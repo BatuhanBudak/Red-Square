@@ -1,26 +1,252 @@
+@font-face {
+  font-family: "Circular-Book";
+  src: url("/fonts/lineto-circular-book.woff2") format("woff2");
+}
+@font-face {
+  font-family: Circular-Bold;
+  src: url("/fonts/lineto-circular-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "youngserifregular";
+  src: url("/fonts/YoungSerif-Regular.woff") format("woff");
+}
+
+:root {
+  --clr-red: hsl(351, 78%, 50%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-black: hsl(0, 0%, 7%);
+  --clr-grey: hsl(0, 0%, 52%);
+
+  --ff-primary: Circular-Bold;
+  --ff-secondary: Circular-Book;
+  --ff-third: youngserifregular;
+
+  /* font-sizes */
+  --fs-h1: 2.3rem;
+  --fs-h2: 1.875rem;
+  --fs-h3: 1.125rem;
+  --fs-h4: 2.3125rem;
+  --fs-h5: 1.125rem;
+  --fs-body: 1.375rem;
+  --fs-links: 1.0625rem;
+}
+
+@media screen and (min-width: 800px) {
+  :root {
+    --fs-h1: 4.25rem;
+    --fs-h2: 3.125rem;
+    --fs-h4: 4rem;
+    --fs-body: 1.5rem;
+    --fs-links: 1.25rem;
+  }
+}
+
+/* Typography */
+
+h1 {
+  line-height: 45px;
+  letter-spacing: -0.6px;
+  font-size: var(--fs-h1);
+  font-family: var(--ff-third);
+  color: var(--clr-white);
+}
+
+h2 {
+  line-height: 40px;
+  letter-spacing: -1.41px;
+  font-size: var(--fs-h2);
+  font-family: var(--ff-primary);
+  color: var(--clr-white);
+}
+
+h3 {
+  font-family: var(--ff-secondary);
+  line-height: 1.4;
+  font-size: var(--fs-h3);
+  color: var(--clr-grey);
+}
+
+h4 {
+  font-family: var(--ff-primary);
+  color: var(--clr-white);
+  line-height: 41px;
+  letter-spacing: -1.73px;
+  font-size: var(--fs-h4);
+}
+h5 {
+  font-family: var(--ff-secondary);
+  color: var(--clr-grey);
+  line-height: 1.4;
+  letter-spacing: 1.4;
+}
+
+p,
+li {
+  line-height: 35px;
+  font-size: var(--fs-body);
+  font-family: var(--ff-secondary);
+  color: var(--clr-white);
+}
+
+@media screen and (min-width: 800px) {
+  h1 {
+    line-height: 72px;
+    letter-spacing: unset;
+  }
+
+  h2 {
+    line-height: 60px;
+    letter-spacing: -3px;
+  }
+
+  h4 {
+    line-height: 66px;
+    letter-spacing: -3px;
+  }
+  h5 {
+    letter-spacing: unset;
+  }
+
+  p,
+  li {
+    line-height: 40px;
+  }
+}
+
+/* General */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--clr-black);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+}
+
+li,
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 a {
-  color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+  font-family: var(--ff-secondary);
+  color: var(--clr-white);
+  line-height: 30px;
+  font-size: var(--fs-links);
+  cursor: pointer;
+  background-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
   }
+}
+
+.btn {
+  padding: 0.4em 1em;
+  border-radius: 22px;
+  border: none;
+  font-size: 1rem;
+  color: var(--clr-black);
+  background-color: var(--clr-white);
+  align-self: flex-start;
+  transition: opacity 0.2s ease-in-out, background 0.4s ease-in-out,
+    color 0.4s ease-in-out;
+  letter-spacing: 0.8px;
+  line-height: 1.71;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 0.5em;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.btn:after {
+  display: block;
+  content: url("/icons/right-arrow.svg");
+  width: 20px;
+  height: 20px;
+}
+@media screen and (min-width: 500px) {
+  .btn {
+    align-self: unset;
+  }
+}
+
+.red {
+  color: var(--clr-red);
+  display: block;
 }

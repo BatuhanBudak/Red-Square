@@ -1,0 +1,73 @@
+main {
+  --inline-padding: 1.5rem;
+  --padding-block: 2em;
+  --margin-block: 2em;
+}
+
+@media screen and (min-width: 650px) {
+  main {
+    --inline-padding: 3.2rem;
+  }
+}
+.main-title {
+  padding-inline: var(--inline-padding);
+  padding-block: 50vw var(--padding-block);
+  max-width: 18ch;
+}
+
+.photo-list {
+  width: 100%;
+  height: auto;
+}
+
+.photo-list-item {
+  display: none;
+  width: 100%;
+}
+.photo-list-item span {
+  aspect-ratio: 16/9;
+}
+.photo-list-item.active {
+  display: inline-block;
+}
+.desc-container {
+  padding-inline: var(--inline-padding);
+}
+.desc-title {
+  padding-block: var(--padding-block);
+}
+.desc-body {
+  padding-bottom: var(--padding-block);
+  border-bottom: 1px solid hsl(0, 0%, 70%);
+}
+
+.clients-container {
+  padding-inline: var(--inline-padding);
+}
+.client-title {
+  padding-block: var(--padding-block) 0;
+}
+.clients-list {
+  padding-bottom: var(--padding-block);
+  border-bottom: 1px solid hsl(0, 0%, 70%);
+}
+
+.clients-list li:nth-child(1) {
+  margin-top: 0.3em;
+}
+.clients-list li:last-child {
+  margin-bottom: 0;
+}
+.clients-list li {
+  margin-block: 0.5em;
+}
+
+@media screen and (min-width: 650px) {
+  .clients-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .clients-list li {
+    margin-block: 0.2em;
+  }
+}

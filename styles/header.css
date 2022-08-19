@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  position: absolute;
+  z-index: 3;
+}
+.logo-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 30px;
+  height: 30px;
+}
+.logo-link::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: #e31f3c;
+}
+
+.logo-link::after {
+  content: "";
+  display: block;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(/icon/red-square.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 174px 30px;
+  opacity: 0;
+  width: 174px;
+  transition: opacity 0.5s;
+}
+@media screen and (min-width: 650px) {
+  .header {
+    padding: 5rem 3.5rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .nav-link {
+    font-size: 1.25rem;
+  }
+}

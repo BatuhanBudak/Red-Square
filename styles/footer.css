@@ -1,0 +1,168 @@
+footer {
+  --inline-padding: 1.5rem;
+  --padding-block: 2rem;
+  --margin-block: 2rem;
+}
+@media screen and (min-width: 650px) {
+  footer {
+    --inline-padding: 3.2rem;
+  }
+}
+.footer-first-links,
+.footer-second-links {
+  padding-inline: var(--inline-padding);
+}
+
+.footer-first-links {
+  padding-top: var(--padding-block);
+}
+
+.footer-second-links {
+  padding-block: var(--padding-block);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.footer-second-links--social-list {
+  display: flex;
+  align-items: center;
+}
+.footer-second-links--social-list > li {
+  margin-right: 1.5rem;
+}
+
+.plus-icon {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: var(--clr-white);
+  border-radius: 20px;
+  margin-right: 3.5px;
+  transition: background-color 0.4s;
+}
+
+.plus-icon:before,
+.plus-icon:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  background-color: var(--clr-black);
+}
+
+.plus-icon:before {
+  width: 8px;
+  height: 2px;
+  margin-left: -4px;
+}
+
+.plus-icon:after {
+  width: 2px;
+  height: 8px;
+  margin-left: -1px;
+}
+
+.nugs-logo-small {
+  display: inline-block;
+  width: 69px;
+  height: 25px;
+}
+button {
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.footer-second-links--cities-list {
+  display: flex;
+  gap: 1.5em;
+}
+
+.footer-second-section {
+  width: 100%;
+  height: 20vh;
+  overflow: hidden;
+  padding-top: var(--padding-block);
+}
+.footer-last-section-container {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-last-section-link {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.footer-last-section-text-container {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* .footer-last-section-text-container span {
+  display: inline-block;
+} */
+
+.footer-image-wrapper {
+  position: absolute;
+  z-index: 2;
+  transform: scale(1.1);
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 650px) {
+  .footer-second-section {
+    height: 10vh;
+    overflow: hidden;
+    padding-top: 1rem;
+  }
+  .footer-last-section-container {
+    padding-inline: var(--inline-padding);
+  }
+  .footer-image-wrapper {
+    transform: scale(1);
+  }
+  .footer-last-section-link {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+  }
+  .footer-last-section-text-container {
+    justify-content: space-between;
+    padding-inline: var(--inline-padding);
+  }
+  .footer-projects-link {
+    color: var(--clr-white);
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-first-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8rem;
+    padding-block: var(--padding-block);
+  }
+
+  .footer-second-links {
+    text-align: right;
+  }
+
+  .footer-second-section {
+    padding-top: 1rem;
+  }
+}
