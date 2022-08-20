@@ -2,7 +2,7 @@ main {
   --inline-padding: 1.5rem;
   --padding-block: 2em;
   --margin-block: 2em;
-  transition: opacity 0.5s;
+  transition: all 1s;
 }
 
 @media screen and (min-width: 650px) {
@@ -51,9 +51,14 @@ main {
   .photo-list {
     width: 90%;
     margin: 0 auto;
+    transition: transform 0.5s;
   }
   .photo-list * {
     border-radius: 20px;
+  }
+  .photo-list:hover,
+  .photo-list:focus {
+    transform: scale(0.98);
   }
 }
 

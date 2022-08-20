@@ -25,15 +25,18 @@ export default function PhotosList() {
   }, [photos.length])
 
   return (
-    <ul className='photo-list'>
-      {
-        photos.map((photo, i) => {
-          return (
-            <Photo src={photo} key={i} id={i} activeIndex={activeIndex} />
-          )
-        })
-      }
-    </ul>
+    <a href="https://www.redsquareagency.com/work">
+      <ul className='photo-list'>
+        {
+          photos.map((photo, i) => {
+            return (
+              <Photo src={photo} key={i} id={i} activeIndex={activeIndex} />
+            )
+          })
+        }
+      </ul>
+    </a>
+
   )
 }
 function Photo({ src, activeIndex, id }) {

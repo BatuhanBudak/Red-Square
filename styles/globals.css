@@ -267,14 +267,11 @@ a {
   z-index: 1;
 }
 
-/* .page-wrapper.active .header .logo-link,
-  .page-wrapper.active footer .footer-second-links,
-  .page-wrapper.active footer .footer-second-section */
-
 @media screen and (min-width: 1000px) {
   .page-wrapper.active a:not(.nav-link, .lets-talk),
   .page-wrapper.active main,
   .page-wrapper.active footer .footer-second-links {
+    transition: all 1s;
     filter: blur(0.5rem);
   }
 }

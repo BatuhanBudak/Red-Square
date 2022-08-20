@@ -1,4 +1,4 @@
-import React from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image';
 import nugs from '../public/icon/nugs-logo.svg';
 import twitter from '../public/icon/twitter.svg';
@@ -10,12 +10,53 @@ import useScreenSize from '../hooks/useScreenSize';
 export default function Footer({ toggleBlur }) {
     const windowWidth = useScreenSize();
     const desktopSize = 650;
+    const containerRef = useRef(null);
+    const targetRef = useRef(null);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+    const constrain = 10;
+
+    useEffect(() => {
+        const containerEle = containerRef.current;
+        const targetEle = targetRef.current;
+
+
+        function rotateLink(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            transforms(x, y, targetEle);
+        }
+        function transforms(x, y, el) {
+            const box = el.getBoundingClientRect();
+            const calcX = -(y - box.y - (box.height / 2)) / constrain;
+            const calcY = (x - box.x - (box.width / 2)) / constrain;
+            setX(calcX);
+            setY(calcY);
+        }
+
+        function resetRotation() {
+            setX(0);
+            setY(0);
+        }
+        if (containerEle) {
+            containerEle.addEventListener('mousemove', rotateLink);
+            containerEle.addEventListener('mouseleave', resetRotation);
+        }
+
+        return () => {
+            containerEle.removeEventListener('mousemove', rotateLink);
+            containerEle.addEventListener('mouseleave', resetRotation)
+        }
+    }, [])
+
+
 
     return (
         <footer>
             <section className='footer-first-section'>
-                <section className='footer-first-links'>
-                    <a href="mailto:hi@rsq.com" className='lets-talk'>
+                <section style={{ transform: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(0)` }} className='footer-first-links' ref={containerRef}>
+                    <a ref={targetRef} href="mailto:hi@rsq.com" className='lets-talk'>
                         <h4
                             onMouseEnter={toggleBlur}
                             onMouseLeave={toggleBlur}
@@ -67,7 +108,7 @@ export default function Footer({ toggleBlur }) {
                     <a className='footer-last-section-link' href="">
                         <div className='footer-last-section-text-container'>
                             {windowWidth >= desktopSize && <h3 className='footer-projects-link'>All Projects</h3>}
-                            <span>Work</span>
+                            <span className='footer-work-link'>Work</span>
                         </div>
                         <div className='footer-image-wrapper'>
                             <Image src={work} alt='' />
