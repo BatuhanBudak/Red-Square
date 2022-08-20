@@ -7,7 +7,7 @@ import linkedin from '../public/icon/linkedin.svg';
 import work from '../public/photos/work.avif';
 import useScreenSize from '../hooks/useScreenSize';
 
-export default function Footer() {
+export default function Footer({ toggleBlur }) {
     const windowWidth = useScreenSize();
     const desktopSize = 650;
 
@@ -15,7 +15,15 @@ export default function Footer() {
         <footer>
             <section className='footer-first-section'>
                 <section className='footer-first-links'>
-                    <h4>Let&apos;s talk. <span className='red'>hi@rsq.com</span></h4>
+                    <a href="mailto:hi@rsq.com" className='lets-talk'>
+                        <h4
+                            onMouseEnter={toggleBlur}
+                            onMouseLeave={toggleBlur}
+                            onFocus={toggleBlur}
+                            onBlur={toggleBlur}
+                        >Let&apos;s talk. <span className='red'>hi@rsq.com</span></h4>
+                    </a>
+
                 </section>
                 <section className='footer-second-links'>
                     <ul className='footer-second-links--social-list'>

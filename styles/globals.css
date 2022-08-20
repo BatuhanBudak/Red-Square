@@ -14,7 +14,7 @@
 :root {
   --clr-red: hsl(351, 78%, 50%);
   --clr-white: hsl(0, 0%, 100%);
-  --clr-black: hsl(0, 0%, 7%);
+  --clr-black: rgb(18, 18, 18);
   --clr-grey: hsl(0, 0%, 52%);
 
   --ff-primary: Circular-Bold;
@@ -38,6 +38,16 @@
     --fs-h4: 4rem;
     --fs-body: 1.5rem;
     --fs-links: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  :root {
+    --fs-h1: 6rem;
+    --fs-h2: 4.5rem;
+    --fs-h4: 4.25rem;
+    --fs-body: 1.75rem;
+    --fs-links: 1.5rem;
   }
 }
 
@@ -249,4 +259,22 @@ a {
 .red {
   color: var(--clr-red);
   display: block;
+}
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* .page-wrapper.active .header .logo-link,
+  .page-wrapper.active footer .footer-second-links,
+  .page-wrapper.active footer .footer-second-section */
+
+@media screen and (min-width: 1000px) {
+  .page-wrapper.active a:not(.nav-link, .lets-talk),
+  .page-wrapper.active main,
+  .page-wrapper.active footer .footer-second-links {
+    filter: blur(0.5rem);
+  }
 }

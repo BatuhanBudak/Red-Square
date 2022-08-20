@@ -2,22 +2,59 @@ main {
   --inline-padding: 1.5rem;
   --padding-block: 2em;
   --margin-block: 2em;
+  transition: opacity 0.5s;
 }
 
 @media screen and (min-width: 650px) {
   main {
-    --inline-padding: 3.2rem;
+    --inline-padding: 3.5rem;
+  }
+}
+@media screen and (min-width: 800px) {
+  main {
+    --inline-padding: 5rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  main {
+    --inline-padding: 9rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  main {
+    --inline-padding: 14rem;
   }
 }
 .main-title {
-  padding-inline: var(--inline-padding);
-  padding-block: 50vw var(--padding-block);
-  max-width: 18ch;
+  padding-inline: var(--inline-padding) 0;
+  padding-block: clamp(300px, 100vw, 500px) 1em;
+  max-width: 20ch;
 }
 
+@media screen and (min-width: 1200px) {
+  .main-title {
+    padding-block: 30vw 10vw;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .main-title {
+    padding-block: 20vw 10vw;
+  }
+}
 .photo-list {
   width: 100%;
   height: auto;
+}
+
+@media screen and (min-width: 1200px) {
+  .photo-list {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .photo-list * {
+    border-radius: 20px;
+  }
 }
 
 .photo-list-item {
@@ -69,5 +106,21 @@ main {
   }
   .clients-list li {
     margin-block: 0.2em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .clients-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-block: var(--padding-block);
+  }
+
+  .client-title {
+    grid-column: 1/2;
+    border-bottom: 1px solid hsl(0, 0%, 70%);
+  }
+  .clients-list {
+    grid-column: 2/4;
   }
 }

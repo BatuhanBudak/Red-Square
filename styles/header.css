@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 2rem 1.5rem;
-  position: absolute;
-  z-index: 3;
+  /* position: absolute;
+  z-index: 3; */
 }
 .logo-link {
   display: block;
@@ -14,6 +14,7 @@
   text-indent: -9999px;
   width: 30px;
   height: 30px;
+  transition: opacity 0.5s;
 }
 .logo-link::before {
   content: "";
@@ -38,6 +39,37 @@
   width: 174px;
   transition: opacity 0.5s;
 }
+.nav-link {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.4s cubic-bezier(0.62, 0, 0, 2.2);
+  filter: blur(0);
+  filter: none;
+}
+.nav-link:hover,
+.nav-link:focus {
+  transform: translateX(5px);
+  transition: transform 0.4s cubic-bezier(0.135, 0.805, 0.305, 0.905) 0.1s;
+}
+.nav-link:after {
+  content: "";
+  width: 8px;
+  height: 13px;
+  display: inline-block;
+  margin-left: 10px;
+  opacity: 0.5;
+  background-image: url("../public/icon/left-arrow.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 8px 13px;
+  transform: translateX(0);
+  transition: transform 0.4s cubic-bezier(0.62, 0, 0, 2.2);
+}
+.nav-link:hover:after {
+  transform: translateX(5px);
+  transition: transform 0.4s cubic-bezier(0.135, 0.805, 0.305, 0.905);
+}
+
 @media screen and (min-width: 650px) {
   .header {
     padding: 5rem 3.5rem;
@@ -45,7 +77,22 @@
 }
 
 @media screen and (min-width: 800px) {
+  .header {
+    padding: 5rem;
+  }
+
   .nav-link {
     font-size: 1.25rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .header {
+    padding: 7rem 9rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .header {
+    padding: 7rem 14rem;
   }
 }
