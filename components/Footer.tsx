@@ -6,6 +6,7 @@ import instagram from '../public/icon/instagram.svg';
 import linkedin from '../public/icon/linkedin.svg';
 import work from '../public/photos/work.avif';
 import useScreenSize from '../hooks/useScreenSize';
+import { motion, Variants } from 'framer-motion';
 
 export default function Footer({ toggleBlur }) {
     const windowWidth = useScreenSize();
@@ -15,6 +16,21 @@ export default function Footer({ toggleBlur }) {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const constrain = 10;
+
+    const variants: Variants = {
+        slideDown: {
+            opacity: 0, y: "50%",
+            transition: {
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8
+            }
+        },
+        slideUp: {
+            opacity: 1, y: 0,
+
+        },
+    }
 
     useEffect(() => {
         const containerEle = containerRef.current;
@@ -29,8 +45,8 @@ export default function Footer({ toggleBlur }) {
         }
         function transforms(x, y, el) {
             const box = el.getBoundingClientRect();
-            const calcX = -(y - box.y - (box.height / 2)) / constrain;
-            const calcY = (x - box.x - (box.width / 2)) / constrain;
+            const calcY = -(y - box.y - (box.height / 2)) / constrain;
+            const calcX = (x - box.x - (box.width / 2)) / constrain;
             setX(calcX);
             setY(calcY);
         }
@@ -54,7 +70,9 @@ export default function Footer({ toggleBlur }) {
 
     return (
         <footer>
-            <section className='footer-first-section'>
+            <motion.section
+                variants={variants} initial="slideDown" whileInView="slideUp"
+                className='footer-first-section'>
                 <section style={{ transform: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(0)` }} className='footer-first-links' ref={containerRef}>
                     <a ref={targetRef} href="mailto:hi@rsq.com" className='lets-talk'>
                         <h4
@@ -102,7 +120,7 @@ export default function Footer({ toggleBlur }) {
                         </li>
                     </ul >
                 </section>
-            </section>
+            </motion.section>
             <section className='footer-second-section'>
                 <div className='footer-last-section-container'>
                     <a className='footer-last-section-link' href="">
