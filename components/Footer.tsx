@@ -7,15 +7,17 @@ import linkedin from '../public/icon/linkedin.svg';
 import work from '../public/photos/work.avif';
 import useScreenSize from '../hooks/useScreenSize';
 import { motion, Variants } from 'framer-motion';
+import DialogModal from './DialogModal';
 
 export default function Footer({ toggleBlur }) {
+    const [isOpened, setIsOpened] = useState(false);
     const windowWidth = useScreenSize();
     const desktopSize = 650;
     const containerRef = useRef(null);
     const targetRef = useRef(null);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
-    const constrain = 10;
+    const constrain = 200;
 
     const variants: Variants = {
         slideDown: {
@@ -47,11 +49,13 @@ export default function Footer({ toggleBlur }) {
             const box = el.getBoundingClientRect();
             const calcY = -(y - box.y - (box.height / 2)) / constrain;
             const calcX = (x - box.x - (box.width / 2)) / constrain;
-            setX(calcX);
-            setY(calcY);
+            setX(calcY);
+            setY(calcX);
         }
 
         function resetRotation() {
+
+            //Interpolation?
             setX(0);
             setY(0);
         }
@@ -66,6 +70,9 @@ export default function Footer({ toggleBlur }) {
         }
     }, [])
 
+    const onProceed = () => {
+        console.log("Proceed clicked");
+    };
 
 
     return (
@@ -73,9 +80,9 @@ export default function Footer({ toggleBlur }) {
             <motion.section
                 variants={variants} initial="slideDown" whileInView="slideUp"
                 className='footer-first-section'>
-                <section style={{ transform: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(0)` }} className='footer-first-links' ref={containerRef}>
-                    <a ref={targetRef} href="mailto:hi@rsq.com" className='lets-talk'>
-                        <h4
+                <section className='footer-first-links' >
+                    <a ref={containerRef} href="mailto:hi@rsq.com" className='lets-talk'>
+                        <h4 ref={targetRef} style={{ transform: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(0)` }}
                             onMouseEnter={toggleBlur}
                             onMouseLeave={toggleBlur}
                             onFocus={toggleBlur}
@@ -87,10 +94,11 @@ export default function Footer({ toggleBlur }) {
                 <section className='footer-second-links'>
                     <ul className='footer-second-links--social-list'>
                         <li>
-                            <button>
+                            <button onClick={() => setIsOpened(true)}>
                                 <span className='plus-icon'></span>
                                 <Image src={nugs} alt='nugs logo' />
                             </button>
+
                         </li>
                         <li>
                             <a href="https://www.instagram.com/redsquareagency/">
@@ -134,6 +142,10 @@ export default function Footer({ toggleBlur }) {
                     </a>
                 </div>
             </section>
+            <DialogModal title="Dialog modal example"
+                isOpened={isOpened}
+                onProceed={onProceed}
+                onClose={() => setIsOpened(false)} />
         </footer>
     )
 }
