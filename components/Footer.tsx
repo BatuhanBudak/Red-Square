@@ -94,7 +94,7 @@ export default function Footer({ toggleBlur }) {
                 <section className='footer-second-links'>
                     <ul className='footer-second-links--social-list'>
                         <li>
-                            <button onClick={() => setIsOpened(true)}>
+                            <button className='modal-button' onClick={() => setIsOpened(true)}>
                                 <span className='plus-icon'></span>
                                 <Image src={nugs} alt='nugs logo' />
                             </button>
@@ -142,7 +142,7 @@ export default function Footer({ toggleBlur }) {
                     </a>
                 </div>
             </section>
-            <DialogModal title="Dialog modal example"
+            <DialogModal
                 isOpened={isOpened}
                 onProceed={onProceed}
                 onClose={() => setIsOpened(false)} />

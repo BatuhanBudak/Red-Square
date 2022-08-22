@@ -265,3 +265,6 @@ button {
     --inline-padding: 8rem;
   }
 }
+.modal-button {
+  cursor: pointer;
+}
