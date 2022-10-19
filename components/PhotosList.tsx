@@ -1,9 +1,8 @@
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { photoArr } from '../photoData.js'
+import Image, { StaticImageData } from "next/image";
+import { useState, useEffect } from "react";
+import { photoArr } from "../photoData.js";
 
 export default function PhotosList() {
-
   const photos = photoArr;
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -12,37 +11,37 @@ export default function PhotosList() {
     let unsunscribe = setInterval(() => {
       if (index === photos.length - 1) {
         index = 0;
-
       } else {
         index += 1;
       }
       setActiveIndex(index);
-    }, 400)
+    }, 400);
     return () => {
       clearInterval(unsunscribe);
-    }
-
-  }, [photos.length])
+    };
+  }, [photos.length]);
 
   return (
     <a href="https://www.redsquareagency.com/work">
-      <ul className='photo-list'>
-        {
-          photos.map((photo, i) => {
-            return (
-              <Photo src={photo} key={i} id={i} activeIndex={activeIndex} />
-            )
-          })
-        }
+      <ul className="photo-list">
+        {photos.map((photo, i) => {
+          return <Photo src={photo} key={i} id={i} activeIndex={activeIndex} />;
+        })}
       </ul>
     </a>
-
-  )
+  );
 }
-function Photo({ src, activeIndex, id }) {
+
+type PhotoProps = {
+  src: StaticImageData;
+  activeIndex: number;
+  id: number;
+};
+
+function Photo({ src, activeIndex, id }: PhotoProps) {
   return (
-    <li className={`photo-list-item ${id === activeIndex ? 'active' : ''}`}>
-      <Image src={src} alt='' />
+    <li className={`photo-list-item ${id === activeIndex ? "active" : ""}`}>
+      <Image src={src} alt="" />
     </li>
-  )
+  );
 }
